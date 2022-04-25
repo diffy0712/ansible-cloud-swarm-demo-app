@@ -1,0 +1,12 @@
+---
+ansible_host: 
+ansible_port: 22
+ansible_user: ansible
+
+project_root: /var/www/example.com/
+project_swarm_stack_name: example-com
+project_public_host: example.com
+project_public_root: /app
+project_image: 
+
+traefik_tls_certresolver: production ## staging
