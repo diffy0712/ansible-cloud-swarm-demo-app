@@ -18,7 +18,7 @@ services:
           memory: 512M
       placement:
         constraints:
-          - node.labels.project.types.website == false
+          - node.labels.project.types.website == true
       labels:
         - traefik.enable=true
         - traefik.docker.network=traefik-public
