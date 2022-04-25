@@ -1,0 +1,7 @@
+    client_max_body_size 16M;
+
+    index index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ index.html;
+    }

@@ -1,0 +1,15 @@
+services:
+  nodejs:
+    image: node:14.19.0-buster-slim
+    command: sh -lc "yarn install && yarn start"
+    working_dir: /app
+    environment:
+      VIRTUAL_HOST: demo.developi.test
+    volumes: 
+      - ./:/app
+    networks:
+      - development-environment_shared
+    
+networks:
+  development-environment_shared:
+    external: true

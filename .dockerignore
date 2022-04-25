@@ -1,0 +1,5 @@
+docker-compose.yml
+.devops
+node_modules
+.idea
+.local

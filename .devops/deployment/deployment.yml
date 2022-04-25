@@ -1,0 +1,56 @@
+---
+  - name: "Deploy {{ inventory_hostname }}"
+    gather_facts: false
+    hosts: all
+    become: true
+    tasks:
+      - name: Create project directory
+        file:
+          path: "{{ project_root }}"
+          state: directory
+          owner: ansible
+          group: ansible
+          mode: '0755'
+
+      - name: Create nginx directory
+        file:
+          path: "{{ project_root }}nginx"
+          state: directory
+          owner: ansible
+          group: ansible
+          mode: '0755'
+
+      - name: Create nginx directory
+        file:
+          path: "{{ project_root }}nginx"
+          state: directory
+          owner: ansible
+          group: ansible
+          mode: '0755'
+
+      - name: Copy nginx config
+        template:
+          src: ./templates/nginx/default.conf.j2
+          dest: '{{ project_root }}nginx/default.conf'
+          owner: ansible
+          group: ansible
+          trim_blocks: false
+          mode: '0755'
+
+      - name: Copy docker-compose
+        template:
+          src: ./templates/docker-compose.yml.j2
+          dest: '{{ project_root }}docker-compose.yml'
+          owner: ansible
+          group: ansible
+          mode: '0755'
+          trim_blocks: false
+
+      - name: Deploy stack from a compose file
+        docker_stack:
+          state: present
+          name: "{{ project_swarm_stack_name }}"
+          compose:
+            - '{{ project_root }}docker-compose.yml'
+          prune: true
+          with_registry_auth: true

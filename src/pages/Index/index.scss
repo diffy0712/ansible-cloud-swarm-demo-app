@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css?family=Russo+One&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+header nav {
+  display: grid;
+  grid-template-columns: 15% 1fr 1fr 15%;
+  min-height: 10vh;
+  color: #fff;
+  align-items: center;
+}
+header nav #logo {
+  grid-column: 2/3;
+  font-size: 1.3rem;
+  font-family: "Russo One", sans-serif;
+}
+header section {
+  display: flex;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+}
+header section .hero {
+  height: 60%;
+  width: 100%;
+  position: relative;
+}
+header section .hero img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+}
+header section .hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0.2;
+  background: #000;
+}
+header section .headline {
+  position: absolute;
+  bottom: 25%;
+  left: 6%;
+  font-size: 3rem;
+  color: #fff;
+  font-family: "Roboto Condensed", sans-serif;
+  z-index: 2;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-image: linear-gradient(to left, #565766, #92a7b9);
+}

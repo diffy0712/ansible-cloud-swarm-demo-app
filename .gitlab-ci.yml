@@ -1,0 +1,29 @@
+
+build:
+  image: registry.gitlab.com/diffy0712/ansible-gitlabci-image:latest
+  stage: build
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - make --directory=./.devops/build publish tag=latest
+  only:
+    - main
+
+deploy:
+  image: registry.gitlab.com/diffy0712/ansible-gitlabci-image:latest
+  stage: deploy
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - mkdir -p ~/.ssh # create secret dir
+    - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519 # create priv key from gitlab variable
+    - chmod 400 ~/.ssh/id_ed25519
+    - echo "$VAULT_PASS" > ./.devops/deployment/.vault_pass
+    - chmod -R 660 ./
+  script:
+    - make --directory=./.devops/deployment deploy host=prod
+  only:
+    - main

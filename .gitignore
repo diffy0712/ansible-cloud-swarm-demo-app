@@ -1,0 +1,16 @@
+# dependencies
+node_modules
+
+# production
+build
+
+!.devops/build
+
+# misc
+.DS_Store
+
+npm-debug.log
+yarn-error.log
+
+.idea
+.local
