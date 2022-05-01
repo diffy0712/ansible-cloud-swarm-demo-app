@@ -9,7 +9,7 @@
     "pretty": "yarn prettier --write src",
     "pretty:watch": "onchange \"src/**/*\" -- prettier --write --ignore-unknown {{changed}}"
   },
-  "author": "David Ferencz <david.ferencz@protonmail.hu>",
+  "author": "David Ferencz <david.ferencz@protonmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.15.8",
